@@ -6,7 +6,7 @@ import axios from 'axios';
 const OrderBook = () => {
 
     const [orderBook, setOrderBook] = useState({ bids: [], asks: [] });
-
+    const ORDER_BOOK_API = "https://trading-charts-proxy-app-2b10140bc843.herokuapp.com/bitfinex-order-book-api";
     useEffect(() => {
         fetchData();
         const interval = setInterval(fetchData, 5000);
@@ -16,7 +16,7 @@ const OrderBook = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/bitfinex-order-book-api');
+            const response = await axios.get(ORDER_BOOK_API);
 
             setOrderBook({
                 bids: response.data.bids,
