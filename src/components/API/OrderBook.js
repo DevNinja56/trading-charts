@@ -9,7 +9,7 @@ const OrderBook = () => {
     const ORDER_BOOK_API = "https://trading-charts-proxy-app-2b10140bc843.herokuapp.com/bitfinex-order-book-api";
     useEffect(() => {
         fetchData();
-        const interval = setInterval(fetchData, 5000);
+        const interval = setInterval(fetchData, 10000);
 
         return () => clearInterval(interval);
     }, []);
