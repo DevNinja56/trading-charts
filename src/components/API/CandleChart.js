@@ -14,6 +14,7 @@ const CandlestickChart = () => {
     },
   });
   const [chartSeries, setChartSeries] = useState([{ data: [] }]);
+  const CANDLES_TRADE_API = "https://trading-charts-proxy-app-2b10140bc843.herokuapp.com/bitfinex-candles-trade-api";
 
   useEffect(() => {
     fetchData();
@@ -24,9 +25,7 @@ const CandlestickChart = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        'http://localhost:3001/bitfinex-candles-trade-api'
-      );
+      const response = await axios.get(CANDLES_TRADE_API);
 
       const formattedData = response.data.map((entry) => ({
         x: new Date(entry[0]),
