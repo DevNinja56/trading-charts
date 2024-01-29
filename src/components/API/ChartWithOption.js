@@ -38,7 +38,7 @@ const ChartWithOptions = () => {
                 <div className='custom-select-container'>
                     <select className='custom-select' value={selectedPair} onChange={handlePairChange}>
                         <option value="BTC/USD">BTC/USD</option>
-                        <option value="ETH/USD">ETH/BTC</option>
+                        <option value="ETH/BTC">ETH/BTC</option>
                         <option value="ZRX/USD">ZRX/USD</option>
                         <option value="XRP/USD">XRP/USD</option>
                     </select>
