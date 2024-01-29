@@ -10,7 +10,7 @@ const OrderBookWithOptions = () => {
 
     return (
         <div className='center'>
-            <h2>API Based Live Order Book {selectedPair}</h2>
+            <h2>Socket Based Live Order Book {selectedPair}</h2>
             <div>
                     <select className='custom-select' value={selectedPair} onChange={handlePairChange}>
                         <option value="BTC/USD">BTC/USD</option>
