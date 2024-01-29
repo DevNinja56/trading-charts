@@ -14,7 +14,7 @@ const CandlestickChart = ({selectedPair, timeFrame}) => {
     },
   });
   const [chartSeries, setChartSeries] = useState([{ data: [] }]);
-  const CANDLES_TRADE_API = `http://trading-charts-proxy-app-2b10140bc843.herokuapp.com/bitfinex-candles-trade-api/${selectedPair.replace('/','')}/${timeFrame}`;
+  const CANDLES_TRADE_API = `https://trading-charts-proxy-app-2b10140bc843.herokuapp.com/bitfinex-candles-trade-api/${selectedPair.replace('/','')}/${timeFrame}`;
 
   useEffect(() => {
     fetchData();
