@@ -3,16 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const OrderBook = () => {
+const OrderBook = ({ selectedPair }) => {
 
     const [orderBook, setOrderBook] = useState({ bids: [], asks: [] });
-    const ORDER_BOOK_API = "https://trading-charts-proxy-app-2b10140bc843.herokuapp.com/bitfinex-order-book-api";
+    const ORDER_BOOK_API = `https://trading-charts-proxy-app-2b10140bc843.herokuapp.com/bitfinex-order-book-api/${selectedPair.replace('/','')}`;
     useEffect(() => {
         fetchData();
         const interval = setInterval(fetchData, 10000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [selectedPair]);
 
     const fetchData = async () => {
         try {
@@ -27,15 +27,14 @@ const OrderBook = () => {
     };
 
     return (
-        <div className='center'>
-            <h2>API Based Live Order Book (BTC/USD)</h2>
+        <div>
             <table className='order-book-table'>
                 <thead>
                     <tr>
-                        <th>Bid Price (USD)</th>
-                        <th>Bid Amount (BTC)</th>
-                        <th>Ask Price (USD)</th>
-                        <th>Ask Amount (BTC)</th>
+                        <th>Bid Price ({selectedPair.split('/')[1]})</th>
+                        <th>Bid Amount ({selectedPair.split('/')[0]})</th>
+                        <th>Ask Price ({selectedPair.split('/')[1]})</th>
+                        <th>Ask Amount ({selectedPair.split('/')[0]})</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { getfirstNElements } from '../../utils/helper';
 
-const CandlestickChart = () => {
+const CandlestickChart = ({selectedPair, timeFrame}) => {
     const [candleData, setCandleData] = useState([]);
     useEffect(() => {
         const socket = new WebSocket('wss://api.bitfinex.com/ws/2');
-
+        const requestKey = `trade:${timeFrame}:t${selectedPair.replace('/', '')}`;
         socket.onopen = () => {
             const subscribeMessage = JSON.stringify({
                 event: 'subscribe',
                 channel: 'candles',
-                key: 'trade:1m:tBTCUSD',
+                key: requestKey,
             });
             socket.send(subscribeMessage);
         };
@@ -35,9 +35,8 @@ const CandlestickChart = () => {
         return () => {
             socket.close();
         };
-    }, []);
+    }, [timeFrame, selectedPair]);
 
-    // Format candlestick data for ReactApexChart
     const seriesData = candleData.map((candle) => ({
         x: new Date(candle[0]),
         y: [candle[1], candle[3], candle[4], candle[2]],
@@ -55,7 +54,6 @@ const CandlestickChart = () => {
 
     return (
         <div>
-            <h2>Live Candlestick Chart <span style={{color: 'red'}}>(BTC/USD)</span></h2>
             <ReactApexChart id="candle-socket" options={options} series={[{ data: seriesData }]} type="candlestick" height={400} />
         </div>
     );

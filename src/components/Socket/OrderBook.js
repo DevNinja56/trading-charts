@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { getlastNElements } from '../../utils/helper';
 
-const OrderBook = () => {
+const OrderBook = ({selectedPair}) => {
     const [orderBook, setOrderBook] = useState({ bids: [], asks: [] });
-
     useEffect(() => {
         const socket = new WebSocket('wss://api.bitfinex.com/ws/2');
         socket.onopen = () => {
             const subscribeMessage = JSON.stringify({
                 event: 'subscribe',
                 channel: 'book',
-                pair: 'tBTCUSD',
+                pair: `t${selectedPair.replace('/','')}`,
                 prec: 'P0',
                 freq: 'F1',
             });
@@ -42,18 +41,17 @@ return () => {
     socket.close();
     setOrderBook([])
 };
-    }, []);
+    }, [selectedPair]);
 
 return (
-    <div className='center'>
-    <h2>API Based Live Order Book (BTC/USD)</h2>
+    <div>
     <table className='order-book-table'>
         <thead>
             <tr>
-                <th>Bid Price (USD)</th>
-                <th>Bid Amount (BTC)</th>
-                <th>Ask Price (USD)</th>
-                <th>Ask Amount (BTC)</th>
+                <th>Bid Price ({selectedPair.split('/')[1]})</th>
+                <th>Bid Amount ({selectedPair.split('/')[0]})</th>
+                <th>Ask Price ({selectedPair.split('/')[1]})</th>
+                <th>Ask Amount ({selectedPair.split('/')[0]})</th>
             </tr>
         </thead>
         <tbody>

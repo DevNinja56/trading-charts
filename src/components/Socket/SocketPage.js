@@ -1,5 +1,7 @@
 import CandlestickChart from "./CandleChart";
+import ChartWithOptions from "./ChartWithOptions";
 import OrderBook from "./OrderBook";
+import OrderBookWithOptions from "./OrderBookWithOptions";
 
 const SocketPage = () => {
   return (
@@ -11,11 +13,11 @@ const SocketPage = () => {
             <br />
             <a href="https://docs.bitfinex.com/reference/ws-public-trades" target="_blank" rel="noreferrer">Websocket Documentation</a>
             <div className='candle-chart-container'>
-                <CandlestickChart></CandlestickChart>
+                <ChartWithOptions></ChartWithOptions>
             </div>
             <br /><br />
             <div>
-                <OrderBook></OrderBook>
+                <OrderBookWithOptions></OrderBookWithOptions>
             </div>
         </div>
     );

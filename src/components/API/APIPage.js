@@ -1,5 +1,7 @@
 import CandlestickChart from "./CandleChart";
+import ChartWithOptions from "./ChartWithOption";
 import OrderBook from "./OrderBook";
+import OrderBookWithOptions from "./OrderBookWithOptions";
 
 const APIPage = () => {
     return (
@@ -11,11 +13,11 @@ const APIPage = () => {
             <br />
             <a href="https://api.bitfinex.com/v2//candles/trade:1m:tBTCUSD/hist?limit=1000" target="_blank" rel="noreferrer">Data source for Order Book</a>
             <div className='candle-chart-container'>
-                <CandlestickChart></CandlestickChart>
+                <ChartWithOptions></ChartWithOptions>
             </div>
             <br /><br />
             <div>
-                <OrderBook></OrderBook>
+                <OrderBookWithOptions></OrderBookWithOptions>
             </div>
         </div>
     );
