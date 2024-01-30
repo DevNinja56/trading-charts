@@ -11,15 +11,15 @@ const OrderBookWithOptions = () => {
     return (
         <div className='center'>
             <h2>Socket Based Live Order Book {selectedPair}</h2>
-            <div>
-                    <select className='custom-select' value={selectedPair} onChange={handlePairChange}>
-                        <option value="BTC/USD">BTC/USD</option>
-                        <option value="ETH/BTC">ETH/BTC</option>
-                        <option value="ZRX/USD">ZRX/USD</option>
-                        <option value="XRP/USD">XRP/USD</option>
-                    </select>
-                </div>
-            <OrderBook selectedPair={selectedPair}/>
+            <div style={{ marginBottom: '20px' }}>
+                <select className='custom-select' value={selectedPair} onChange={handlePairChange}>
+                    <option value="BTC/USD">BTC/USD</option>
+                    <option value="ETH/BTC">ETH/BTC</option>
+                    <option value="ZRX/USD">ZRX/USD</option>
+                    <option value="XRP/USD">XRP/USD</option>
+                </select>
+            </div>
+            <OrderBook selectedPair={selectedPair} />
         </div>
     );
 };
